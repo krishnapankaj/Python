@@ -1,0 +1,54 @@
+File1.1:
+
+EmpNo:Name:Marks1:Marks2:Marks3:Total
+1001:Alpha:65:78:90:233
+1007:Harry:90:78:23:191
+1003:beta:67:89:75:231
+1005:Jimmy:12:56:49:117
+1007:Harry:90:78:23:191
+1056:kimely:45:56:78:179
+1023:Henry:98:78:67:243
+File2.1:
+
+EmpNo:Name:Marks1:Marks2:Marks3:Total
+1001:Alpha:65:79:90: 233
+1007:Harry:90:78:23:      191
+1003:Beta:67:89:75:   231
+1005:Jimmy:19:55:49: 115
+1007:Harry:90:78:23:191
+1056:Kimely:45:56:78: 179
+1023:Henry:98:78:67:243
+------------------------------------------------------------------------------------------------
+1.Display File1 and File2
+
+2.Display File2 with proper format, as in File1
+--cat file2.1 | tr -d " " (deletes spaces)
+
+3.Display contents of File1 without Name
+--cat file1.1 | cut -d ":" -f1,3,4,5,6
+
+4.Convert Name for all entries into Upper Case letters in File2
+--cat file2.1 | cut -d ":" -f2 |tr "[a-z]" "[A-Z]"
+
+5.Sort the files and suppress duplicate entry, if any in File2
+--cat file2.1 | tr -d " " | sort -u (tr used to remove whitespace)
+
+6.Display the top 5 entries in terms of highest Total from File1
+--cat file1.1 | sort -t ":" -k6 | head -5 (sort -k3,3n -k4,4n First it will sort 3rd column and then 4th column.)
+
+7.Display only Marks1, Marks3 for all the entries from File1
+--cat file1.1 | cut -d ":" -f3,5
+
+8.Compare both the files and determine it’s a match or not
+--diff file1.1 file2.1
+
+9.If not a match, determine the line number in File1 which are different from File2
+--cmp file1.1 file2.1
+
+10.Sort File1 based on Name (case-insensitive)
+--sort -i -k2 file1.1
+
+11.Search and display EmpNo whose Total is less than 200
+--
+12.Remove any duplicate entries from File1 and File2. Re-write the contents of File1 into File3	
+--

@@ -1,0 +1,129 @@
+user@74e2e64ab84d:/projects$ cat greptest
+
+
+Peter:123777:ETA
+
+Joan:16466:HLT
+
+John:11223:HR
+
+
+
+
+
+David:23456::::FSI
+
+George::::876543:ECS
+
+
+
+
+
+user@74e2e64ab84d:/projects$ cat greptest | grep "FSI"
+David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | grep -n "FSI"
+13:David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | grep -v "FSI"
+
+
+Peter:123777:ETA
+
+Joan:16466:HLT
+
+John:11223:HR
+
+
+
+
+
+
+George::::876543:ECS
+
+
+
+
+
+user@74e2e64ab84d:/projects$ cat greptest | grep -v "FSI"|grep -v "^$"
+Peter:123777:ETA
+Joan:16466:HLT
+John:11223:HR
+George::::876543:ECS
+user@74e2e64ab84d:/projects$ cat greptest | grep -i "fsi"
+David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | grep -n -i "fsi"
+13:David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | grep -i -n "fsi"
+13:David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | grep -n -v "$^"
+1:
+2:
+3:Peter:123777:ETA
+4:
+5:Joan:16466:HLT
+6:
+7:John:11223:HR
+8:
+9:
+10:
+11:
+12:
+13:David:23456::::FSI
+14:
+15:George::::876543:ECS
+16:
+17:
+18:
+19:
+20:
+user@74e2e64ab84d:/projects$ cat greptest | grep -v "$^"
+
+
+Peter:123777:ETA
+
+Joan:16466:HLT
+
+John:11223:HR
+
+
+
+
+
+David:23456::::FSI
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$" |head -3 | tail +2
+tail: cannot open '+2' for reading: No such file or directory
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$" |head -3 | tail -2
+George::::876543:ECS
+Joan:16466:HLT
+user@74e2e64ab84d:/projects$ cat greptest |grep -v "^$"
+
+bash: at: command not found
+user@74e2e64ab84d:/projects$ cat greptest
+
+
+Peter:123777:ETA
+
+Joan:16466:HLT
+
+John:11223:HR
+
+
+
+
+
+David:23456::::FSI
+
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$"
+David:23456::::FSI
+George::::876543:ECS
+Joan:16466:HLT
+John:11223:HR
+Peter:123777:ETA
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$" |head -3 |tail -2 |cut -d ":" f1
+cut: you must specify a list of bytes, characters, or fields
+Try 'cut --help' for more information.
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$" |head -3 |tail -2
+George::::876543:ECS
+Joan:16466:HLT
+user@74e2e64ab84d:/projects$ cat greptest | sort | grep -v "^$" |head -3 |tail -2 | cut -d ":" -f1
+George
+Joan

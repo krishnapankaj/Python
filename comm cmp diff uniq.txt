@@ -1,0 +1,147 @@
+Uniq:(Works On single file only)
+
+user@12753ce0cc5e:/projects$ cat empsrc1.dat
+1231 Peter Unix 10
+1231 Peter Unix 10
+1231 Peter Unix 10
+1232 joan dwt 12
+1232 joan dwt 12
+1233 Kevin Java 02
+1234 Martin DotNET 20
+1234 Martin DotNET 20
+1234 Martin DotNET 20
+1234 Martin DotNET 20
+1235 Carol Java 10
+1235 Carol Java 10
+1235 Carol Java 10
+user@12753ce0cc5e:/projects$ uniq -u empsrc1.dat
+1233 Kevin Java 02
+user@12753ce0cc5e:/projects$ uniq -d empsrc1.dat
+1231 Peter Unix 10
+1232 joan dwt 12
+1234 Martin DotNET 20
+1235 Carol Java 10
+user@12753ce0cc5e:/projects$ uniq -c empsrc1.dat
+      3 1231 Peter Unix 10
+      2 1232 joan dwt 12
+      1 1233 Kevin Java 02
+      4 1234 Martin DotNET 20
+      3 1235 Carol Java 10
+	  
+CMP:
+user@12753ce0cc5e:/projects$ cat empsrc.dat
+1234 Peter Unix 10
+1231 Peter Unix 10
+1232 Joan DWT 12
+1233 Kevin Java 12
+1234 Martin DotNET 10
+1235 Carol Java 10
+user@12753ce0cc5e:/projects$ cat emptrg.dat
+1231 Peter Unix 10
+1232 joan dwt 12
+1233 Kevin Java 02
+1234 Martin DotNET 20
+1235 Carol Java 10
+
+user@12753ce0cc5e:/projects$ cmp empsrc.dat emptrg.dat
+empsrc.dat emptrg.dat differ: byte 4, line 1
+
+1232 joan dwt 12
+1233 Kevin Java 02
+1234 Martin DotNET 20
+1235 Carol Java 10
+user@12753ce0cc5e:/projects$ cmp -l empsrc.dat emptrg.dat
+ 4  64  61
+23  61  62
+25 120 152
+26 145 157
+27 164 141
+28 145 156
+29 162  40
+30  40 144
+31 125 167.......and so on.
+Reason:
+Output pattern explained below
+Difference in 2nd file byte position : 1st file octal no. : 2nd file octal no.
+
+DIFF:
+
+user@12753ce0cc5e:/projects$ diff empsrc.dat emptrg.dat
+1d0
+< 1234 Peter Unix 10
+3,5c2,4
+< 1232 Joan DWT 12
+< 1233 Kevin Java 12
+< 1234 Martin DotNET 10
+---
+> 1232 joan dwt 12
+> 1233 Kevin Java 02
+> 1234 Martin DotNET 20
+
+Shows difference line wise.
+a : add
+c : change
+d : delete
+5c2 means if we change the 5th line from both the files then both the files will be equal.
+Similarly 6d2 means if we delete the 6th line from file 1 then both the files will be equal.
+
+COMM:
+
+Group1 file content:
+root:x:0:root
+
+bin:x:1:root,bin,daemon
+
+users:x:200:henry,image,enquiry
+
+adm:x:25:adm,daemon,listen
+
+dialout:x:18:root,henry
+
+lp:x:19:lp
+
+ftp:x:50:
+
+group2 file content:
+root:x:0:root                                               
+
+bin:x:1:root,bin,daemon
+
+users:x:200:henry,image,enquiry
+
+adm:x:25:adm,daemon,listen
+
+dialout:x:18:root,henry
+
+lp:x:18:lp
+
+ftp:x:50
+
+cron:x:16:cron
+
+user@b9ea6a16e65b:/projects$ comm group1 group2
+                root:x:0:root
+
+                bin:x:1:root,bin,daemon
+
+                users:x:200:henry,image,enquiry
+
+                adm:x:25:adm,daemon,listen
+
+                dialout:x:18:root,henry
+
+        lp:x:18:lp
+comm: file 2 is not in sorted order
+
+        ftp:x:50
+
+        cron:x:16:cron
+lp:x:19:lp
+comm: file 1 is not in sorted order
+
+ftp:x:50:
+
+Reason:
+1st column shows unique records in File 1
+2nd Column shown unique records in File 2
+3rd column shows common records in both the files

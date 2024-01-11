@@ -1,0 +1,32 @@
+Operators used with test for evaluating numeral data are
+
+  -eq  -> Equal To
+  -lt    -> Less than 
+  -gt  -> Greater than
+  -ge -> Greater than or equal to
+  -le  -> Less than or equal to
+ 
+
+Operators used with test for evaluating string data are
+
+str1 = str2  -> True if both equals
+str1 != str2 -> True if not equals
+-n str1  -> True if str1 is not a null string
+-z str1 -> True if str1 is a null string
+ 
+
+Operators used with test for evaluating file data are
+
+-f file1 -> True if file1 exists and is a regular file
+-d file1 -> True if file1 exists and is directory
+-s file1 -> True if file1 exists and has size greater than 0
+-r file1  -> True if file1 exists and is readable
+-w file1 -> True if file1 exists and is writable
+-x file1 -> True if file1 exists and is executable.
+ 
+
+Logical Operators used with test are  
+
+!  -> Negates the expression
+-a -> Binary ‘and’ operator
+-o -> Binary ‘or’ operator

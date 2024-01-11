@@ -1,0 +1,16 @@
+user@f0ca2d3e68ce:/projects$ find .. -name test1
+../projects/pracdir/test1
+
+user@f0ca2d3e68ce:/projects$ find . -size 0c
+./f1
+./f2
+./f3
+
+user@f0ca2d3e68ce:/projects$ find . -size 0c -exec rm -i {} \;
+user@f0ca2d3e68ce:/projects$ cat f1
+cat: f1: No such file or directory
+user@f0ca2d3e68ce:/projects$ cat f2
+cat: f2: No such file or directory
+user@f0ca2d3e68ce:/projects$ cat f3
+cat: f3: No such file or directory
+
